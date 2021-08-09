@@ -1,6 +1,8 @@
 let currentResult = 0;
-alert(currentResult);
+
+let calcDesc = currentResult + " + 10";
+// alert(currentResult);
 
 currentResult = currentResult + 10;
 
-outputResult(currentResult, "");
+outputResult(currentResult, calcDesc);
