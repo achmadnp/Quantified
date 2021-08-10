@@ -1,38 +1,65 @@
-const defaultResult = parseInt(currentResultOutput.textContent);
+const defaultResult = 0;
 let currentResult = defaultResult;
 
-let calcDesc = `${defaultResult} + 10`;
-let errorMsg = "An Error has occured!";
-// alert(currentResult);
+let calcDesc = `Initial value: ${defaultResult}`;
+let history = [];
 
 outputResult(currentResult, calcDesc);
 
+function addToCalcHistory(desc) {
+  history.push(`${desc} = ${currentResult}`);
+}
+
+function getUserInput() {
+  return parseFloat(userInput.value);
+}
+
+function calcOperator(operator, resultBefore, calcNum) {
+  const desc = `${
+    Math.round(1000000000 * resultBefore) / 1000000000
+  } ${operator} ${calcNum}`;
+  addToCalcHistory(desc);
+  console.log(history);
+  outputResult(Math.round(1000000000 * currentResult) / 1000000000, desc);
+}
+
 function addWith() {
-  currentResult = currentResult + parseInt(userInput.value);
-  return outputResult(currentResult, "");
+  const enteredNum = getUserInput();
+  const initialResult = currentResult;
+  currentResult = currentResult + enteredNum;
+  calcOperator("+", initialResult, enteredNum);
 }
 
 function substractWith() {
-  currentResult = currentResult - userInput.value;
-  return outputResult(currentResult, "");
+  const enteredNum = getUserInput();
+  const initialResult = currentResult;
+  currentResult = currentResult - enteredNum;
+  calcOperator("-", initialResult, enteredNum);
 }
 
 function multiplyWith() {
-  currentResult = currentResult * userInput.value;
-  return outputResult(currentResult, "");
+  const enteredNum = getUserInput();
+  const initialResult = currentResult;
+  currentResult = currentResult * enteredNum;
+  calcOperator("*", initialResult, enteredNum);
 }
 
 function divideWith() {
-  currentResult = currentResult / userInput.value;
-  return outputResult(currentResult, "");
+  const enteredNum = getUserInput();
+  const initialResult = currentResult;
+  currentResult = currentResult / enteredNum;
+  calcOperator("/", initialResult, enteredNum);
 }
 
 function reset() {
+  const desc = "value has been result to 0";
   currentResult = 0;
-  return outputResult(currentResult, "");
+  return outputResult(currentResult, desc);
 }
 
 function powerOf() {
+  const desc = `${currentResult} ^ ${userInput.value}`;
+
   input = parseInt(userInput.value);
 
   if (input === 0) {
@@ -49,7 +76,9 @@ function powerOf() {
 }
 
 function modulo() {
+  const desc = `${currentResult} % ${userInput.value}`;
   currentResult = currentResult % parseInt(userInput.value);
+  return outputResult(currentResult, desc);
 }
 
 addBtn.addEventListener("click", addWith);
