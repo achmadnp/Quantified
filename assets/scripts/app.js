@@ -13,17 +13,17 @@ function addWith() {
 }
 
 function substractWith() {
-  currentResult = currentResult - parseInt(userInput.value);
+  currentResult = currentResult - userInput.value;
   return outputResult(currentResult, "");
 }
 
 function multiplyWith() {
-  currentResult = currentResult * parseInt(userInput.value);
+  currentResult = currentResult * userInput.value;
   return outputResult(currentResult, "");
 }
 
 function divideWith() {
-  currentResult = currentResult / parseInt(userInput.value);
+  currentResult = currentResult / userInput.value;
   return outputResult(currentResult, "");
 }
 
